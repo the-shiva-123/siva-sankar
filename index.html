@@ -66,7 +66,6 @@
 </head>
 <body>
   <div class="container">
-    <h1>k196</h1>
     <h1>Activity Tracker</h1>
 
     <div class="add-box">
@@ -75,6 +74,14 @@
     </div>
 
     <ul id="list"></ul>
+
+    <div style="margin-top:30px; padding:20px; background:#e8f0ff; border-radius:10px; text-align:center;">
+      <h2>Predict Next Day</h2>
+      <button id="predictBtn" style="padding:10px 16px; background:#4a7df0; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:600;">Predict</button>
+      <div id="loader" style="margin-top:15px; display:none; font-size:18px;">⏳ Loading...</div>
+      <div id="result" style="margin-top:15px; font-size:20px; font-weight:bold; color:#333;"></div>
+    </div>
+
   </div>
 
   <script>
@@ -92,7 +99,20 @@
     function removeItem(btn){
       btn.parentElement.remove();
     }
-  </script>
+    document.getElementById('predictBtn').addEventListener('click', function(){
+      const loader = document.getElementById('loader');
+      const result = document.getElementById('result');
+      loader.style.display = 'block';
+      result.textContent = '';
+
+      setTimeout(() => {
+        loader.style.display = 'none';
+        const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        result.textContent = 'Tomorrow is ' + days[tomorrow.getDay()];
+      }, 5000);
+    });
+</script>
 </body>
 </html>
-
