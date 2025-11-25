@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Activity Tracker</title>
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:#f3f6fa;
+      padding:30px;
+      display:flex;
+      justify-content:center;
+    }
+    .container{
+      width:100%;max-width:700px;
+      background:white;
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 0 20px rgba(0,0,0,0.1);
+    }
+    h1{text-align:center;margin-top:0;color:#333}
+
+    .add-box{
+      display:flex;
+      gap:10px;
+      margin-bottom:20px;
+    }
+    .add-box input{
+      flex:1;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid #ccc;
+      outline:none;
+    }
+    .add-box button{
+      padding:10px 18px;
+      border:none;
+      background:#4a7df0;
+      color:white;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+    }
+
+    ul{list-style:none;padding:0;margin:0}
+    li{
+      background:#f0f4ff;
+      padding:12px;
+      border-radius:8px;
+      margin-bottom:10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .remove{
+      background:#ff5b5b;
+      border:none;
+      color:white;
+      padding:6px 10px;
+      border-radius:6px;
+      cursor:pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Activity Tracker</h1>
+
+    <div class="add-box">
+      <input type="text" id="activityInput" placeholder="Enter activity..." />
+      <button onclick="addActivity()">Add</button>
+    </div>
+
+    <ul id="list"></ul>
+  </div>
+
+  <script>
+    function addActivity(){
+      const input = document.getElementById('activityInput');
+      const text = input.value.trim();
+      if(!text) return;
+
+      const li = document.createElement('li');
+      li.innerHTML = `${text} <button class='remove' onclick='removeItem(this)'>Remove</button>`;
+      document.getElementById('list').appendChild(li);
+      input.value = '';
+    }
+
+    function removeItem(btn){
+      btn.parentElement.remove();
+    }
+  </script>
+</body>
+</html>
